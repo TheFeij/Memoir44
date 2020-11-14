@@ -1,4 +1,4 @@
-public class Artillery extends Forces{
+public class Artillery extends Force{
 
 
 

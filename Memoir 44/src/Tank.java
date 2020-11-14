@@ -1,4 +1,4 @@
-public class Tank extends Forces{
+public class Tank extends Force{
 
 
 }
