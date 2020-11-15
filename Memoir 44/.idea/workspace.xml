@@ -10,11 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8f2ee075-bd78-4ac1-8aab-606cf3246b07" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Cards.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Force.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Artillery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Artillery.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Forces.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Cards.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cards.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Force.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Force.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Soldier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Soldier.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Tank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tank.java" afterDir="false" />
     </list>
@@ -48,6 +48,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -77,6 +78,9 @@
       <workItem from="1605337007935" duration="4836000" />
       <workItem from="1605347193870" duration="35000" />
       <workItem from="1605347259482" duration="4009000" />
+      <workItem from="1605426220535" duration="5114000" />
+      <workItem from="1605436209831" duration="6330000" />
+      <workItem from="1605459203325" duration="2138000" />
     </task>
     <servers />
   </component>
@@ -88,14 +92,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="275" y="26" key="#Project_Structure/0.0.1366.728@0.0.1366.728" timestamp="1605256877876" />
-    <state x="391" y="193" key="com.intellij.ide.util.TipDialog" timestamp="1605337013517">
+    <state x="488" y="74" key="#com.intellij.ide.util.MemberChooser" timestamp="1605460278799">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="391" y="193" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1605337013517" />
-    <state x="65" y="0" key="new project wizard" timestamp="1605341828154">
+    <state x="488" y="74" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1605460278799" />
+    <state x="126" y="15" key="SettingsEditor" timestamp="1605460147341">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="65" y="0" key="new project wizard/0.0.1366.728@0.0.1366.728" timestamp="1605341828154" />
+    <state x="126" y="15" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1605460147341" />
+    <state x="391" y="193" key="com.intellij.ide.util.TipDialog" timestamp="1605459268161">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="391" y="193" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1605459268161" />
+    <state x="65" y="0" key="new project wizard" timestamp="1605436228018">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="65" y="0" key="new project wizard/0.0.1366.728@0.0.1366.728" timestamp="1605436228018" />
     <state x="346" y="49" key="search.everywhere.popup" timestamp="1605278624517">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

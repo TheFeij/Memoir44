@@ -8,9 +8,9 @@ import java.util.Collections;
 public class Cards {
 
     //list of unused cards
-    ArrayList<String> unusedCards;
+    private ArrayList<String> unusedCards;
     //list of used cards
-    ArrayList<String> usedCards;
+    private ArrayList<String> usedCards;
 
 
 
@@ -30,7 +30,7 @@ public class Cards {
         for(int counter = 0 ; counter < 6 ; counter++)
             unusedCards.add("order 4 unit");
         for(int counter = 0 ; counter < 5 ; counter++)
-            unusedCards.add("order 3 unit from same type");
+            unusedCards.add("order 3 unit same type");
 
         Collections.shuffle(unusedCards);
     }
