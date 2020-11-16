@@ -2,8 +2,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * this class represents a bank of cards which holds unused cards and
+ * this class represents a bank of cards. it is used to manage game cards. it holds unused cards and
  * used cards. it can shuffle and give cards
+ *
+ * @author Feij
+ * @since 2020.11.16
+ * @version 1
+ *
  */
 public class Cards {
 
@@ -56,4 +61,4 @@ public class Cards {
 
     }
 
-}
+}//end class Card

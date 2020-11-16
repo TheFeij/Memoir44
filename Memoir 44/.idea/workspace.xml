@@ -14,6 +14,8 @@
       <change beforePath="$PROJECT_DIR$/src/Artillery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Artillery.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Cards.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cards.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Force.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Force.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Map.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Soldier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Soldier.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Tank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tank.java" afterDir="false" />
@@ -81,6 +83,9 @@
       <workItem from="1605426220535" duration="5114000" />
       <workItem from="1605436209831" duration="6330000" />
       <workItem from="1605459203325" duration="2138000" />
+      <workItem from="1605509899046" duration="4311000" />
+      <workItem from="1605527974599" duration="3533000" />
+      <workItem from="1605544910062" duration="2794000" />
     </task>
     <servers />
   </component>
@@ -92,18 +97,18 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="275" y="26" key="#Project_Structure/0.0.1366.728@0.0.1366.728" timestamp="1605256877876" />
-    <state x="488" y="74" key="#com.intellij.ide.util.MemberChooser" timestamp="1605460278799">
+    <state x="488" y="74" key="#com.intellij.ide.util.MemberChooser" timestamp="1605546309236">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="488" y="74" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1605460278799" />
+    <state x="488" y="74" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1605546309236" />
     <state x="126" y="15" key="SettingsEditor" timestamp="1605460147341">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="126" y="15" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1605460147341" />
-    <state x="391" y="193" key="com.intellij.ide.util.TipDialog" timestamp="1605459268161">
+    <state x="391" y="193" key="com.intellij.ide.util.TipDialog" timestamp="1605544916692">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="391" y="193" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1605459268161" />
+    <state x="391" y="193" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1605544916692" />
     <state x="65" y="0" key="new project wizard" timestamp="1605436228018">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

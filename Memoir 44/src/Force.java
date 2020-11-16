@@ -1,11 +1,10 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
 /**
  * this class represents a force. each force has a number of units
- * forces can attack and move. they have location in the map. if they
- * get attacked, number of their units will decrease
+ * forces can attack and move. if they get attacked, number of their
+ * units will decrease.
  *
  * @author Feij
  * @since 2020.11.13
@@ -73,6 +72,21 @@ abstract public class Force {
     }
 
     /**
+     * A method to disable a force attack possibility for one turn
+     */
+    public void disableAttack(){
+        canAttack = false;
+    }
+
+    /**
+     * A method to enable attack possibility of the force at the
+     * end of the turn
+     */
+    public void enableAttack(){
+        canAttack = true;
+    }
+
+    /**
      * A method to generate mentioned number of dices
      * @param numberOfDices number of dices to be generated
      * @return an array containing generated dices
@@ -121,6 +135,14 @@ abstract public class Force {
             return false;
 
         return true;
+    }
+
+    /**
+     * A method to check if the force is destroyed or not
+     * @return true if the force is destroyed
+     */
+    public boolean isDestroyed(){
+        return numberOfUnits == 0;
     }
 
     /**

@@ -28,6 +28,7 @@ public class Player {
         this.medals = 0;
         this.cards = new ArrayList<>();
         this.forces = new ArrayList<>();
+        //to be completed
     }
 
 

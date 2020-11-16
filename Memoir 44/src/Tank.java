@@ -1,5 +1,12 @@
 import java.util.ArrayList;
 
+/**
+ * This class represents a tank group.it is a type of force
+ *
+ * @author Feij
+ * @since 2020.11.16
+ * @version 1
+ */
 public class Tank extends Force{
 
 
@@ -29,15 +36,21 @@ public class Tank extends Force{
         int numberOfDices = 3;
 
         //defender effects
-        if(defenderGround.equals("H"))
-            numberOfDices--;
-        else if(defenderGround.equals("J"))
-            numberOfDices -= 2;
-        else if(defenderGround.equals("T"))
-            numberOfDices -= 2;
-        else if(defenderGround.equals("S"))
-            if(this.getName().contains("AL"))
+        switch (defenderGround) {
+            case "H":
+                numberOfDices--;
+                break;
+            case "J":
                 numberOfDices -= 2;
+                break;
+            case "T":
+                numberOfDices -= 2;
+                break;
+            case "S":
+                if (this.getName().contains("AL"))
+                    numberOfDices -= 2;
+                break;
+        }
 
         //attacker effects
         if(attackerGround.equals("T"))
