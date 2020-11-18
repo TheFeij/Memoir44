@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  *This class represents a player, it has cards, forces and medals
@@ -16,7 +17,7 @@ public class Player {
     //a list of player's cards
     private ArrayList<String> cards;
     //a list of player's forces
-    private ArrayList<Force> forces;
+    protected ArrayList<Force> forces;
 
 
     /**
@@ -31,6 +32,14 @@ public class Player {
         //to be completed
     }
 
+
+    /**
+     * A method to get players name
+     * @return name of the player
+     */
+    public String getName(){
+        return name;
+    }
 
     /**
      * A method to print all cards of the player in a suitable way
@@ -62,6 +71,8 @@ public class Player {
         System.out.println();
         for(int counter = 0 ; counter < numberOfCards ; counter++)
             System.out.print("|$$$$$$$$$$$$$$$$$$$$$$$$$| ");
+        System.out.println();
+        System.out.println();
     }
 
     /**
@@ -69,7 +80,7 @@ public class Player {
      * @param card the card to be checked
      * @return true if the player has the card
      */
-    public boolean checkCard(String card){
+    private boolean checkCard(String card){
         for(String crd : cards)
             if(crd.equals(card))
                 return true;
@@ -108,6 +119,32 @@ public class Player {
                 return force;
 
         return null;
+    }
+
+    /**
+     * A method to remove destroyed forces and get number of casualties
+     * @return number of casualties
+     */
+    public int removeCasualties(){
+        int numberOfCasualties = 0;
+        Iterator<Force> iterator = forces.iterator();
+        while(iterator.hasNext()){
+            Force force = iterator.next();
+            if(force.isDestroyed()){
+                numberOfCasualties++;
+                iterator.remove();
+            }
+        }
+        return numberOfCasualties;
+    }
+
+
+    /**
+     * A method to increase number of medals
+     * @param numberOfIncrement the amount of increment
+     */
+    public void increaseMedals(int numberOfIncrement){
+        medals += numberOfIncrement;
     }
 
 

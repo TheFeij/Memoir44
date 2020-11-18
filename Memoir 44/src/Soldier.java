@@ -15,11 +15,9 @@ public class Soldier extends Force{
      * A constructor to create a new soldier
      * @param name           name of the soldier
      * @param numberOfUnits  number of units
-     * @param movesPerTurn   maximum number of moves a soldier can do
-     * @param attackRange    attack range of the soldier
      */
-    public Soldier(String name, int numberOfUnits, int movesPerTurn, int attackRange) {
-        super(name, numberOfUnits, movesPerTurn, attackRange);
+    public Soldier(String name, int numberOfUnits) {
+        super(name, numberOfUnits, 2, 3);
         ArrayList<Integer> defendingDices = new ArrayList<>();
         defendingDices.add(1);
         defendingDices.add(5);

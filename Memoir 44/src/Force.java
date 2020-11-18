@@ -55,6 +55,14 @@ abstract public class Force {
     }
 
     /**
+     * A method to get maximum number of moves a force can do per turn
+     * @return maximum number of moves a force can do per turn
+     */
+    public int getMovesPerTurn(){
+        return movesPerTurn;
+    }
+
+    /**
      * A method to check if this number of moves is possible
      * for this force at this turn or not
      * @param numberOfMoves number of moves we wish to to
@@ -87,6 +95,22 @@ abstract public class Force {
     }
 
     /**
+     * A method to see if the force can attack or not
+     * @return true if the force can attack
+     */
+    public boolean getCanAttack(){
+        return canAttack;
+    }
+
+    /**
+     * A method to get number of units
+     * @return number of units
+     */
+    public int getNumberOfUnits() {
+        return numberOfUnits;
+    }
+
+    /**
      * A method to generate mentioned number of dices
      * @param numberOfDices number of dices to be generated
      * @return an array containing generated dices
@@ -98,6 +122,10 @@ abstract public class Force {
         for(int counter = 0 ; counter < numberOfDices ; counter++)
             dices[counter] = random.nextInt(6) + 1;
 
+        System.out.print("Dices: ");
+        for(int counter = 0 ; counter < numberOfDices ; counter++){
+            System.out.print(dices[counter] + " ");
+        }
         return dices;
     }
 
@@ -127,8 +155,6 @@ abstract public class Force {
      * @return true if attack is possible
      */
     protected boolean checkAttackPossibility(int numberOfDices, int distance){
-        if(!canAttack)
-            return false;
         if(!checkAttackRange(distance))
             return false;
         if(numberOfDices < 1)
@@ -161,7 +187,7 @@ abstract public class Force {
      * @param distance distance between attacker and defender
      * @return 1 if attack was successful. -1 if attack is not possible. 0 if attack was unsuccessful
      */
-    private int attack(Force force,String attackerGround, String defenderGround, int distance){
+    public int attack(Force force,String attackerGround, String defenderGround, int distance){
         int numberOfDices = calculateTotalNumberOfDices(attackerGround, defenderGround, distance);
 
         if(checkAttackPossibility(numberOfDices, distance))
@@ -194,5 +220,7 @@ abstract public class Force {
     public void setDefendingDices(ArrayList<Integer> defendingDices){
         this.defendingDices = defendingDices;
     }
+
+
 
 }
