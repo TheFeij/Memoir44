@@ -27,7 +27,7 @@ public class Map {
         map = new String[9][13][2];
         //1st row
         map[0][0][0] = "H";
-        map[0][0][1] = "Ax-T1-4";
+        map[0][0][1] = "AX-T1-4";
         map[0][1][0] = "H";
         map[0][1][1] = "AX-S1-4";
         map[0][2][0] = "N";
@@ -68,7 +68,7 @@ public class Map {
         map[1][11][0] = "N";
         ///////////////////
         //3rd row
-        map[2][0][0] = "T";
+        map[2][0][0] = "T*";
         map[2][1][0] = "R";
         map[2][2][0] = "N";
         map[2][3][0] = "N";
@@ -147,22 +147,22 @@ public class Map {
         map[6][12][0] = "N";
         /////////////////////
         //8th row
-        map[5][0][0] = "N";
-        map[5][0][1] = "AL-S7-4";
-        map[5][1][0] = "N";
-        map[5][1][1] = "AL-A1-2";
-        map[5][2][0] = "N";
-        map[5][3][0] = "J";
-        map[5][4][0] = "J";
-        map[5][5][0] = "N";
-        map[5][5][1] = "AL-A2-2";
-        map[5][6][0] = "N";
-        map[5][7][0] = "N";
-        map[5][8][0] = "J";
-        map[5][9][0] = "N";
-        map[5][9][1] = "AL-S8-4";
-        map[5][10][0] = "N";
-        map[5][11][0] = "N";
+        map[7][0][0] = "N";
+        map[7][0][1] = "AL-S7-4";
+        map[7][1][0] = "N";
+        map[7][1][1] = "AL-A1-2";
+        map[7][2][0] = "N";
+        map[7][3][0] = "J";
+        map[7][4][0] = "J";
+        map[7][5][0] = "N";
+        map[7][5][1] = "AL-A2-2";
+        map[7][6][0] = "N";
+        map[7][7][0] = "N";
+        map[7][8][0] = "J";
+        map[7][9][0] = "N";
+        map[7][9][1] = "AL-S8-4";
+        map[7][10][0] = "N";
+        map[7][11][0] = "N";
         //////////////////////
         //9th row
         map[8][0][0] = "N";
@@ -179,9 +179,16 @@ public class Map {
         map[8][8][1] = "AL-S9-4";
         map[8][9][0] = "N";
         map[8][10][0] = "N";
-        map[8][11][0] = "T";
+        map[8][11][0] = "T*";
         map[8][12][0] = "N";
         map[8][12][1] = "AL-T3-3";
+
+        //initializing other houses
+        for(int i = 0 ; i < 9 ; i++)
+            for(int j = 0 ; j < 13 ; j++)
+                if(map[i][j][1] == null)
+                    map[i][j][1] = "";
+
 
     }
 
@@ -406,6 +413,8 @@ public class Map {
         if(commands.size() == 0) {
             if(moveCounter == 2 && force instanceof Soldier)
                 force.disableAttack();
+            if(force  instanceof Artillery)
+                force.disableAttack();
             return;
         }
 
@@ -425,8 +434,8 @@ public class Map {
             return;
         }
 
-        map[forceLocation[0]][forceLocation[1]][1] = "empty";
-        map[newLocation[0]][newLocation[1]][1] = force.getName();
+        map[forceLocation[0]][forceLocation[1]][1] = "";
+        map[newLocation[0]][newLocation[1]][1] = force.getName() + "-" + force.getNumberOfUnits();
         commands.remove(0);
         moveCounter++;
 
@@ -453,7 +462,7 @@ public class Map {
         String houseGround = map[i][j][0];
 
         //force cannot enter an occupied house
-        if(!houseForce.equals("empty"))
+        if(!houseForce.equals(""))
             return 0; //moving to this location is impossible because its occupied
         //rivers cannot be passed
         if(houseGround.equals("R"))
@@ -497,7 +506,7 @@ public class Map {
         int[] location = getForceLocation(forceName);
         int i = location[0];
         int j = location[1];
-        map[i][j][1] = "empty";
+        map[i][j][1] = "";
     }
 
     /**
@@ -535,8 +544,97 @@ public class Map {
     /**
      * A method to display map
      */
-    public void displayMap(){
-        //to be completed
+    public void displayMap() {
+
+        System.out.print(ConsoleColors.RED_BOLD);
+        for (int i = 0; i < 13; i++) {
+            System.out.print("    *    ");
+        }
+
+        for (int i = 0; i < 9; i++) {
+
+            if (i % 2 == 0) {
+                System.out.println(ConsoleColors.RED_BOLD);
+                for (int j = 0; j < 13; j++) {
+                    System.out.print("*");
+                    if(map[i][j][0].equals("N"))
+                        displayInHouse("");
+                    else
+                        displayInHouse(map[i][j][0]);
+                    System.out.print(ConsoleColors.RED_BOLD);
+                    System.out.print("*");
+                }
+                System.out.println();
+
+                for (int j = 0; j < 13; j++) {
+                    System.out.print("*");
+                    displayInHouse(map[i][j][1]);
+                    System.out.print(ConsoleColors.RED_BOLD);
+                    System.out.print("*");
+                }
+                System.out.println();
+
+                if (i == 8) {
+                    for (int j = 0; j < 13; j++) {
+                        System.out.print("    *    ");
+                    }
+                } else {
+                    for (int j = 0; j < 12; j++) {
+                        System.out.print("    *" + ConsoleColors.BLUE_BOLD + "   *" + ConsoleColors.RED_BOLD);
+                    }
+                    System.out.print("    *");
+                }
+
+
+            } else {
+                System.out.println(ConsoleColors.BLUE_BOLD);
+                System.out.print("    ");
+                for (int j = 0; j < 12; j++) {
+                    System.out.print("*");
+                    if(map[i][j][0].equals("N"))
+                        displayInHouse("");
+                    else
+                        displayInHouse(map[i][j][0]);
+                    System.out.print(ConsoleColors.BLUE_BOLD);
+                    System.out.print("*");
+                }
+
+                System.out.println();
+                System.out.print("    ");
+                for (int j = 0; j < 12; j++) {
+                    System.out.print("*");
+                    displayInHouse(map[i][j][1]);
+                    System.out.print(ConsoleColors.BLUE_BOLD);
+                    System.out.print("*");
+                }
+
+                System.out.println();
+
+
+                for (int j = 0; j < 12; j++)
+                    System.out.print(ConsoleColors.RED_BOLD + "    *" + ConsoleColors.BLUE_BOLD + "   *");
+                System.out.print(ConsoleColors.RED_BOLD + "    *" + ConsoleColors.BLUE_BOLD);
+
+            }
+
+        }
+        System.out.println(ConsoleColors.RESET);
+        System.out.println();
+    }
+
+    /**
+     * A method to display a string in a hexagon house in the map
+     * @param string string to be displayed
+     */
+    public void displayInHouse(String string){
+        System.out.print(ConsoleColors.RESET);
+        int spaces = 7 - string.length();
+        for(int counter = 0 ; counter < (spaces / 2) ; counter++)
+            System.out.print(" ");
+        System.out.print(string);
+        for(int counter = 0 ; counter < (spaces - spaces /2 ) ; counter++)
+            System.out.print(" ");
+        System.out.print(ConsoleColors.RESET);
     }
 
     /**

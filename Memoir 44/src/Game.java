@@ -1,12 +1,29 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
+/**
+ * program starts in this class.it manages the game
+ *
+ * @author Feij
+ * @since 2020.11.19
+ * @version 1.2
+ */
 public class Game {
 
 
 
 
     public static void main(String[] args){
+
+        System.out.println("--------------------------------------------------------------------------------------------");
+        System.out.println("---->Ground Symbols :  H : Hill,  S : Shelter,  R : River,  B : Bridge");
+        System.out.println("                  J : Jungle,  T: Town and Village");
+        System.out.println("---->Forces Symbols :  S : Soldier,  T : Tank,  A : Artillery");
+        System.out.println("---->AX : Axis,  AL : Allied");
+        System.out.println("---->Forces will be displayed like this  AX-S3-4   ----> Axis-Soldier3-4 units remaining" );
+        System.out.println("--------------------------------------------------------------------------------------------");
+
 
         //create a Map object
         Map map = new Map();
@@ -38,6 +55,10 @@ public class Game {
         players.add(alliedPlayer);
         players.add(axisPlayer);
 
+
+        map.displayMap();
+        System.out.println();
+
         //game process
         while(true){
 
@@ -46,10 +67,6 @@ public class Game {
             //process of doing each players actions
             for(int i = 0 ; i < 2 ; i++){
                 player = players.get(i);
-
-                //displaying game map
-                map.displayMap();
-                System.out.println();
 
                 System.out.printf("%s's turn. Please choose a card\n", player.getName());
                 //displaying players cards
@@ -68,7 +85,7 @@ public class Game {
                 }//end of card choosing process
 
 
-                int numberOfChoices = card.charAt(6);
+                int numberOfChoices = Integer.parseInt(String.valueOf(card.charAt(6)));
                 boolean sameType = false;
                 if(card.contains("same type"))
                     sameType = true;
@@ -77,6 +94,8 @@ public class Game {
                 //process of moving
                 ArrayList<Force> forces = new ArrayList<>();
                 for(int counter = 0 ; counter < numberOfChoices ; counter++){
+                    System.out.println(numberOfChoices);
+                    System.out.println(counter);
 
                     //process of choosing a force
                     System.out.println("Please choose a force to move and then to attack" +
@@ -85,11 +104,15 @@ public class Game {
                         String forceName = input.nextLine();
                         Force force = player.getAForce(forceName);
 
+                        if(searchForce(forces, force)){
+                            System.out.println("You cannot move a force twice. Please try again");
+                            continue;
+                        }
                         if(force == null){
                             System.out.println("Entered force is not valid. Please try again");
                             continue;
                         }
-                        if(counter > 1){
+                        if(counter > 0){
                             if(sameType){
                                 if(checkSameType(forces.get(0), force)) {
                                     System.out.println("Forces should have the same type. Please try again");
@@ -109,6 +132,10 @@ public class Game {
                     ArrayList<String> moveCommands = new ArrayList<>();
                     while(true){
                         String stringCommand = input.nextLine();
+                        if(stringCommand.equals("")){
+                            System.out.println("Command is not valid. Please try again");
+                            continue;
+                        }
                         if(stringCommand.equals("0"))
                             break;
                         moveCommands = generateMoveCommand(stringCommand);
@@ -117,6 +144,7 @@ public class Game {
                             continue;
                         }
                         if(!forces.get(counter).checkMoves(moveCommands.size())) {
+                            System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$");
                             System.out.println("This force cannot go that far. Please try again");
                         }
                         else
@@ -128,6 +156,8 @@ public class Game {
                     if(moveCommands.size() > 0)
                         map.move(forces.get(counter), moveCommands, 0);
 
+                    map.displayMap();
+
 
                 }//end of the process of moving
 
@@ -137,6 +167,8 @@ public class Game {
 
                     if (!attacker.getCanAttack()) {
                         System.out.printf("%s cannot attack this turn\n", attacker.getName());
+                        if(forces.get(forces.size() - 1) == attacker)
+                            checkScores(players.get(0).getMedals(), players.get(1).getMedals(), map.checkSpecialHouses());
                         continue;
                     }
                     System.out.printf("Please choose a target for %s to attack or enter 0 to refuse to attack\n"
@@ -174,11 +206,27 @@ public class Game {
                                     " Please try again and choose another defender");
                             continue;
                         }
+                        else if(attackChecker == 1)
+                            System.out.println("Attack was successful");
+                        else
+                            System.out.println("Attack was unsuccessful");
+
 
                         map.updateForceStatus(defender.getName(), defender.getNumberOfUnits());
+                        int medals;
+                        if(i == 0) {
+                            medals = players.get(1).removeCasualties();
+                            players.get(0).increaseMedals(medals);
+                        }
+                        else {
+                            medals = players.get(0).removeCasualties();
+                            players.get(1).increaseMedals(medals);
+                        }
+                        checkScores(players.get(0).getMedals(), players.get(1).getMedals(), map.checkSpecialHouses());
                         break;
                     }
 
+                    map.displayMap();
 
                 }//end process of attacking
 
@@ -186,28 +234,10 @@ public class Game {
                     force.enableAttack();
                 }
 
-                int medals;
-                if(i == 0) {
-                    medals = players.get(1).removeCasualties();
-                    players.get(0).increaseMedals(medals);
-                }
-                else {
-                    medals = players.get(0).removeCasualties();
-                    players.get(1).increaseMedals(medals);
-                }
-
-
-
-
-
-
             }//end of the process of doing each players actions
 
 
-
-
         }//end of game process
-
 
 
     }//end method main
@@ -259,17 +289,84 @@ public class Game {
             else
                 simpleCommand = stringCommand.substring(0, index);
 
+            ArrayList<String> extendedCommands = extendCommand(simpleCommand);
+            for(String command : extendedCommands)
+                if(!checkMoveCommand(command))
+                    return null;
 
-            //checks if command is valid or not
-            if(!checkMoveCommand(simpleCommand))
-                return null;
-
-            moveCommands.add(simpleCommand);
+            moveCommands.addAll(extendedCommands);
             stringCommand = stringCommand.substring(index + 1);
 
         }
 
         return moveCommands;
+    }
+
+    /**
+     * A method to extend a command. for example changes 2U to U U
+     * @param command the command to be extended
+     * @return extended command
+     */
+    public static ArrayList<String> extendCommand(String command){
+        ArrayList<String> extendedCommand = new ArrayList<>();
+        if(command.charAt(0) == '2' || command.charAt(0) == '3'){
+            int repetition = Integer.parseInt(String.valueOf(command.charAt(0)));
+            for(int counter = 0 ; counter < repetition ; counter++)
+                extendedCommand.add(command.substring(1));
+        }
+        else
+            extendedCommand.add(command);
+        return extendedCommand;
+
+    }
+
+    /**
+     * A method to search if the mentioned force exist in a list of forces
+     * or not
+     * @param forces list of forces
+     * @param force the force to be checked
+     * @return true if the mentioned force exist in a list of forces
+     */
+    public static boolean searchForce(ArrayList<Force> forces, Force force){
+        for(Force frc : forces){
+            if(frc == force)
+                return true;
+        }
+        return false;
+    }
+
+
+    /**
+     * A method to check and show scores and to end the game if any team
+     * scores 6
+     * @param alliedMedals allied medals
+     * @param axisMedals axis medals
+     * @param specialHousesCode 1 if allied has captured axis town, -1 if axis
+     *                          has captured allied town. 0 if both has done this and
+     *                          2 if none has done this.
+     */
+    public static void checkScores(int alliedMedals, int axisMedals, int specialHousesCode){
+        if(specialHousesCode == 1)
+            alliedMedals++;
+        else if(specialHousesCode == -1)
+            axisMedals++;
+        else if(specialHousesCode == 0){
+            alliedMedals++;
+            axisMedals++;
+        }
+
+        if(alliedMedals == 6){
+            System.out.println("Allied won!!");
+            System.out.println("Scores: Allied = " + alliedMedals + "; Axis = " + axisMedals);
+            System.exit(0);
+        }
+        else if(axisMedals == 6){
+            System.out.println("Axis won!!");
+            System.out.println("Scores: Axis = " + axisMedals + "; Allied = " + alliedMedals);
+            System.exit(0);
+        }
+        else
+            System.out.println("Scores: Axis = " + axisMedals + "; Allied = " + alliedMedals);
     }
 
 

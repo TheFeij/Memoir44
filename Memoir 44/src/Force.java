@@ -8,7 +8,7 @@ import java.util.Random;
  *
  * @author Feij
  * @since 2020.11.13
- * @version 1
+ * @version 1.2
  */
 abstract public class Force {
 
@@ -126,6 +126,7 @@ abstract public class Force {
         for(int counter = 0 ; counter < numberOfDices ; counter++){
             System.out.print(dices[counter] + " ");
         }
+        System.out.println();
         return dices;
     }
 
@@ -157,10 +158,8 @@ abstract public class Force {
     protected boolean checkAttackPossibility(int numberOfDices, int distance){
         if(!checkAttackRange(distance))
             return false;
-        if(numberOfDices < 1)
-            return false;
 
-        return true;
+        return numberOfDices >= 1;
     }
 
     /**
@@ -190,7 +189,7 @@ abstract public class Force {
     public int attack(Force force,String attackerGround, String defenderGround, int distance){
         int numberOfDices = calculateTotalNumberOfDices(attackerGround, defenderGround, distance);
 
-        if(checkAttackPossibility(numberOfDices, distance))
+        if(!checkAttackPossibility(numberOfDices, distance))
             return -1; //attack not possible
         if(!checkDices(numberOfDices, force.getDefendingDices()))
             return 0; //attack unsuccessful

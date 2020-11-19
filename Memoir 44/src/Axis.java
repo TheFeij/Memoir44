@@ -15,9 +15,9 @@ public class Axis extends Player{
         Tank tank1 = new Tank("AX-T1", 4);
         Tank tank2 = new Tank("AX-T2", 4);
         Tank tank3 = new Tank("AX-T3", 4);
-        Tank tank4 = new Tank("AX-T3", 4);
-        Tank tank5 = new Tank("AX-T3", 4);
-        Tank tank6 = new Tank("AX-T3", 4);
+        Tank tank4 = new Tank("AX-T4", 4);
+        Tank tank5 = new Tank("AX-T5", 4);
+        Tank tank6 = new Tank("AX-T6", 4);
 
         Soldier soldier1 = new Soldier("AX-S1", 4);
         Soldier soldier2 = new Soldier("AX-S2", 4);

@@ -76,6 +76,14 @@ public class Player {
     }
 
     /**
+     * A method to get number of player's medals
+     * @return number of medals
+     */
+    public int getMedals() {
+        return medals;
+    }
+
+    /**
      * A method to check if the player has the mentioned card or not
      * @param card the card to be checked
      * @return true if the player has the card
